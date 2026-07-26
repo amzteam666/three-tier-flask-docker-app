@@ -1,13 +1,13 @@
 pipeline {
-  agent {
-    docker {
-        image 'docker:latest'
-        args '-v /var/run/docker.sock:/var/run/docker.sock'
-       }
+    agent {
+        docker {
+            image 'docker:latest'
+            args '-v /var/run/docker.sock:/var/run/docker.sock -e HOME=/tmp'
+        }
     }
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('docker-hub-id')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
         IMAGE_NAME = 'shahbazalirahi/flask-docker-app'
     }
 
